@@ -35,8 +35,8 @@ export default function LaunchList() {
   return (
     <FlatList
       contentContainerClassName="pb-8"
-      data={data.launches}
-      keyExtractor={(item) => item.id}
+      data={data?.launches}
+      keyExtractor={(item) => item?.id!}
       renderItem={renderItem}
       ItemSeparatorComponent={() => <View className="h-0.5 bg-gray-200" />}
     />

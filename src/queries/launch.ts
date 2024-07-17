@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
+import { gql } from '~/__generated__';
 
-export const LAUNCHES_QUERY = gql`
+export const LAUNCHES_QUERY = gql(`
   query GetLaunches {
     launches {
       id
@@ -13,9 +13,9 @@ export const LAUNCHES_QUERY = gql`
       launch_date_utc
     }
   }
-`;
+`);
 
-export const LAUNCH_DETAIL_QUERY = gql`
+export const LAUNCH_DETAILS_QUERY = gql(`
   query GetLaunchDetails($id: ID!) {
     launch(id: $id) {
       mission_name
@@ -34,4 +34,4 @@ export const LAUNCH_DETAIL_QUERY = gql`
       }
     }
   }
-`;
+`);

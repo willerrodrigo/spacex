@@ -4,17 +4,19 @@ import { Alert, Linking, Pressable, Text, View } from 'react-native';
 
 import { RootStackParamList } from '../navigation';
 
-import { LAUNCH_DETAIL_QUERY } from '~/queries';
+import { LAUNCH_DETAILS_QUERY } from '~/queries';
 
 type DetailsScreenRouteProp = RouteProp<RootStackParamList, 'LaunchDetails'>;
 
 export default function LaunchDetails() {
   const router = useRoute<DetailsScreenRouteProp>();
-  const { loading, error, data } = useQuery(LAUNCH_DETAIL_QUERY, {
+  const { loading, error, data } = useQuery(LAUNCH_DETAILS_QUERY, {
     variables: { id: router.params.id },
   });
 
-  const openUrl = async (url: string) => {
+  const openUrl = async (url?: string | null) => {
+    if (!url) return;
+
     try {
       await Linking.openURL(url);
     } catch {
