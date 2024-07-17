@@ -18,7 +18,7 @@ export default function RootStack() {
         <Stack.Screen
           name="LaunchDetails"
           component={LaunchDetails}
-          options={{ title: 'Launch Details' }}
+          options={{ title: 'Launch Details', presentation: 'modal' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
