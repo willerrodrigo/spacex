@@ -5,6 +5,7 @@ import { FlatList, ListRenderItem, Pressable, Text, View } from 'react-native';
 
 import { RootStackParamList } from '../navigation';
 
+import { Launch } from '~/__generated__/graphql';
 import { LAUNCHES_QUERY } from '~/queries';
 
 type OverviewScreenNavigationProps = StackNavigationProp<RootStackParamList, 'LaunchList'>;
@@ -21,13 +22,15 @@ export default function LaunchList() {
     return <Text>Error! {error.message}</Text>;
   }
 
-  const renderItem: ListRenderItem<any> = ({ item }) => {
+  const renderItem: ListRenderItem<Launch | null> = ({ item }) => {
+    if (!item) return null;
+
     return (
       <Pressable
         className="p-4"
-        onPress={() => navigation.navigate('LaunchDetails', { id: item.id })}>
+        onPress={() => navigation.navigate('LaunchDetails', { id: item.id! })}>
         <Text className="text-2xl font-bold">{item.mission_name}</Text>
-        <Text className="italic">{item.rocket.rocket_name}</Text>
+        <Text className="italic">{item.rocket?.rocket_name}</Text>
       </Pressable>
     );
   };
